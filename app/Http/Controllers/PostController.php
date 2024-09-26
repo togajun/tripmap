@@ -9,7 +9,12 @@ class PostController extends Controller
 {
     public function index(Post $post)//インポートしたPostをインスタンス化して$postとして使用。
     {
-        return $post->get();//$postの中身を戻り値にする。
+        return view('posts.index')->with(['posts'->get()]);//$postの中身を戻り値にする。
+    }
+    
+    public function create()
+    {
+        return view('posts.create');
     }
 }
 
