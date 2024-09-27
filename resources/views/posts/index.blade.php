@@ -2,23 +2,12 @@
 <html lang="ja">
     <head>
         <meta charset="utf-8">
-        <title>Blog</title>
+        <title>Tripmap</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>Blog Name</h1>
-        <div class='posts'>
-            @foreach ($posts as $post)
------------------------上記で、$postsが使用されている---------------------------
-                <div class='post'>
-                    <h2 class='title'>{{ $post->title }}</h2>
-                    <p class='body'>{{ $post->body }}</p>
-                </div>
-            @endforeach
-        </div>
-        <div>
-            {{ $posts->links() }}
-        </div>
+        <h1>Tripmap</h1>
+        <a href='/posts/create'>create</a>
     </body>
 </html>
