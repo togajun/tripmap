@@ -3,18 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\Post;
+use App\Models\Post;
+use App\Models\Location;
 
 class PostController extends Controller
 {
     public function index(Post $post)//インポートしたPostをインスタンス化して$postとして使用。
     {
-        return view('posts.index')->with(['posts'->get()]);//$postの中身を戻り値にする。
+        return view('posts.index');
     }
     
     public function create()
     {
-        return view('posts.create');
+        $locations = Location::all(); // 全てのロケーションを取得
+        return view('posts.create')->with(['locations' => $locations]);
+    }
+    
+    public function store(Request $request, Post $post)
+    {
+        $input = $request['post'];
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
     }
 }
 

@@ -8,6 +8,9 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
+        <h1 class="location">
+            {{ $post->location }}
+        </h1>
         <h1 class="title">
             {{ $post->title }}
         </h1>
@@ -21,7 +24,7 @@
             <img src="{{ $post->image_url }}" alt="画像が読み込めません。">
         </div>
         <div class="footer">
-            <a href="/">戻る</a>
+            <a href="/posts">戻る</a>
         </div>
     </body>
 </html>
