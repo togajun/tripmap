@@ -13,6 +13,30 @@ class PostController extends Controller
         return view('posts.index');
     }
     
+    public function getGeoJson()
+    {
+        $geoJson = file_get_contents(public_path('geojson/japan.geojson'));
+
+        // デコードされたオブジェクトは連想配列形式
+        $decoded_geoJson = json_decode($geoJson, true);
+
+        // 各都道府県を参照渡しで回す
+        foreach ($decoded_geoJson['features'] as &$feature) {
+            $prefectureId = $feature['properties']['pref'];
+            $post = Post::where('location_id', $prefectureId)->first();
+
+
+            // 新しい要素を追加
+            if ($post) {
+                $feature['properties'] += [
+                    'picture' => $post->picture
+                ];
+            }
+        }
+
+        return response()->json($decoded_geoJson);
+    }
+    
     public function create()
     {
         $locations = Location::all(); // 全てのロケーションを取得
