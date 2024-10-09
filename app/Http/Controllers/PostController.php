@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Location;
+use App\Models\Category;
+use Cloudinary;
 
 class PostController extends Controller
 {
@@ -37,17 +39,40 @@ class PostController extends Controller
         return response()->json($decoded_geoJson);
     }
     
+    public function getPosts() 
+    {   // 必要なデータだけを返す（例: location_idとimage_path）
+        $posts = Post::select('location_id', 'image_path')->get();
+        return response()->json($posts);
+    }
+    
     public function create()
     {
-        $locations = Location::all(); // 全てのロケーションを取得
-        return view('posts.create')->with(['locations' => $locations]);
+        $locations = Location::all(); // 
+        $categories = Category::all();
+        return view('posts.create')->with([
+            'locations' => $locations,
+            'categories' => $categories
+        ]);
     }
     
     public function store(Request $request, Post $post)
     {
         $input = $request['post'];
+        $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        $input += [
+            'image_path' => $image_url, 
+            'user_id' => auth()->id(), 
+            'category_id' => $request->input('post.category_id'), 
+            'location_id' => $request->input('post.locations_id')
+        ];
         $post->fill($input)->save();
         return redirect('/posts/' . $post->id);
+    }
+    
+    public function show(Post $post)
+    {
+        return view('posts.show')->with(['post' => $post]);
+        //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
     }
 }
 

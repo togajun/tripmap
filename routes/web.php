@@ -19,9 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/geojson', [PostController::class, 'getGeoJson']);
 Route::get('/posts', [PostController::class, 'index'])->name('index');
+Route::get('/api/posts', [PostController::class, 'getPosts']);
 Route::get('/posts/create', [PostController::class, 'create']);
+Route::post('/posts', [PostController::class, 'store']);
 Route::get('/posts/{post}', [PostController::class ,'show']);
 
 Route::get('/dashboard', function () {

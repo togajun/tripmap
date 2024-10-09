@@ -18,6 +18,8 @@ class Post extends Model
         'location_id',
         'title',
         'body',
-        'image_url',  
+        'image_path',
+        'user_id',
+        'category_id',
     ];
 }
