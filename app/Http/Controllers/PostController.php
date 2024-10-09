@@ -41,7 +41,7 @@ class PostController extends Controller
     
     public function getPosts() 
     {   // 必要なデータだけを返す（例: location_idとimage_path）
-        $posts = Post::select('location_id', 'image_path')->get();
+        $posts = Post::select('id', 'location_id', 'image_path')->get();
         return response()->json($posts);
     }
     
@@ -73,6 +73,12 @@ class PostController extends Controller
     {
         return view('posts.show')->with(['post' => $post]);
         //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
+    }
+    
+    public function delete(Post $post)
+    {
+        $post->delete();
+        return redirect('/');
     }
 }
 

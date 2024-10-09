@@ -24,6 +24,7 @@ Route::get('/api/posts', [PostController::class, 'getPosts']);
 Route::get('/posts/create', [PostController::class, 'create']);
 Route::post('/posts', [PostController::class, 'store']);
 Route::get('/posts/{post}', [PostController::class ,'show']);
+Route::delete('/posts/{post}', [PostController::class,'delete']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

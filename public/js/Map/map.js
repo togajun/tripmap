@@ -19,6 +19,8 @@ window.addEventListener('DOMContentLoaded', () => {
                         style: function (feature) {
                             const prefId = feature.properties.pref; // GeoJSONの都道府県ID（pref）
                             const post = postData.find(p => p.location_id == prefId); // 投稿データのlocation_idと一致するものを探す
+                            console.log('Prefecture ID:', prefId); // デバッグ用
+                            console.log('Post found:', post); // postがあるか確認
 
                             if (post && post.image_path) {
                                 return {
@@ -42,6 +44,8 @@ window.addEventListener('DOMContentLoaded', () => {
                             const post = postData.find(p => p.location_id == prefId);
 
                             if (post && post.image_path) {
+                                const postId = post.id || 'No ID';  // post.idが無い場合の確認
+                                console.log('Post ID:', postId); // postのIDを確認
                                 const imageUrl = post.image_path;
                                 const bounds = layer.getBounds(); // 都道府県の境界
 
@@ -105,8 +109,10 @@ window.addEventListener('DOMContentLoaded', () => {
                                     console.error("Image load failed:", imageUrl);
                                 };
 
-                                // ポップアップに画像を表示
-                                layer.bindPopup(`<strong>${feature.properties.name}</strong><br><img src="${imageUrl}" alt="picture" width="100">`);
+                                // ポップアップに詳細リンクを表示
+                                layer.bindPopup(`<strong>${feature.properties.name}</strong><br>
+                                    <img src="${imageUrl}" alt="picture" width="100"><br>
+                                    <a href="/posts/${postId}" target="_blank">詳細を見る</a>`);  // リンクを追加
                             } else {
                                 layer.bindPopup(`<strong>${feature.properties.name}</strong>`);
                             }
