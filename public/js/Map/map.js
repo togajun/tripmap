@@ -1,10 +1,10 @@
 window.addEventListener('DOMContentLoaded', () => {
     const map = L.map('map',{
-        zoomControl: false,  // ズームコントロールを無効にする
-        scrollWheelZoom: false,  // マウスホイールによるズームを無効にする
-        doubleClickZoom: false,  // ダブルクリックによるズームを無効にする
-        boxZoom: false,  // ボックスズームを無効にする
-        touchZoom: false  // タッチ操作によるズームを無効にする
+        // zoomControl: false,  // ズームコントロールを無効にする
+        // scrollWheelZoom: false,  // マウスホイールによるズームを無効にする
+        // doubleClickZoom: false,  // ダブルクリックによるズームを無効にする
+        // boxZoom: false,  // ボックスズームを無効にする
+        // touchZoom: false  // タッチ操作によるズームを無効にする
     }).setView([35.6762, 139.6503], 5);
 
     // 投稿データを取得
