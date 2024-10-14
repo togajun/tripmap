@@ -33,10 +33,10 @@
 ## **🖼️ Screenshots**
 
 ### Tripmap Home  
-![Home Screenshot](https://via.placeholder.com/600x400?text=Screenshot+1)
+![Home Screenshot](./screenshots/home.png)
 
 ### Create a New Post  
-![Create Post Screenshot](https://via.placeholder.com/600x400?text=Screenshot+2)
+![Create Post Screenshot](./screenshots/create.png)
 
 ---
 
