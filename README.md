@@ -55,3 +55,8 @@ Frontend: Leaflet.js
 Cloud Storage: Cloudinary
 
 Database: MySQL
+
+## Sample User
+
+Mail: togajun.43@gmail.com
+Password: its1stuser
