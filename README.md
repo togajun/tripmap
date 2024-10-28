@@ -56,7 +56,7 @@ Cloud Storage: Cloudinary
 
 Database: MySQL
 
-## Sample User
+## 👤Sample User
 
 Mail: togajun.43@gmail.com
 
